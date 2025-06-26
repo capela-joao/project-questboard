@@ -1,0 +1,19 @@
+*{
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body{
+  width: 100vw;
+  height: 100vh;
+  background-color: #1b2838;
+}
+
+.fullscreen-center {
+  height: 100vh;                 
+  display: flex;                 
+  justify-content: center;       
+  align-items: center;           
+  overflow: hidden;              
+}
