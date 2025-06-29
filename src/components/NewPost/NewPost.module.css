@@ -3,7 +3,8 @@
     width: 100%;
     border-radius: 8px;
     color: #fefefe;
-    gap: 0.5rem;
+    background-color: #101114;
+    border: 1px solid #cccccc2c;
 }
 
 .newpost_content{
@@ -12,15 +13,23 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding: 1rem;
+}
+
+.newpost_data{
+    display: flex;
+    width: 100%;
+    gap: 0.5rem;
+    padding: 0.5rem;
 }
 
 .newpost_content input{
     width: 100%;
-    border-radius: 8px 8px 0 0;
-    padding: 2rem;
-    background-color: #101114;
+    border-radius: 8px;
+    padding: 0.5rem;
     border: none;
-    border-bottom: 1px solid #cccccc2c;
+    background-color: #5253552f;
+    border: 1px solid #cccccc2c;
     font-size: 20px;
     outline: none;
     color: #fefefe;
@@ -29,9 +38,9 @@
 .profile{
     display: flex;
     width: 45px;
-    height: 45px;
-    background-color: #101114;
-    border: solid 1px #101114;
+    height: 40px;
+    background-color: #5253552f;
+    border: 1px solid #cccccc2c;
     align-items: center;
     justify-content: center;
     border-radius: 100%;
@@ -44,8 +53,8 @@
     justify-content: right;
     width: 100%;
     background-color: #101114;
-    padding: 1rem;
     border-radius: 0 0 8px 8px;
+    padding: 0.5rem;
 }
 
 .newpost_buttons select{
@@ -60,13 +69,13 @@
 
 .newpost_buttons button{
     padding: 0.5rem;
-    width: 30%;
+    width: 20%;
     border: none;
     border-radius: 8px;
     background: linear-gradient(to right, #00c6ff, #0072ff);
     color: #fefefe;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
     opacity: 90%;
 }
 
