@@ -5,15 +5,9 @@
 }
 
 html, body{
-  width: 100vw;
-  height: 100vh;
-  background-color: #1b2838;
+  background: linear-gradient(135deg, #1b1e21, #101114);
 }
 
-.fullscreen-center {
-  height: 100vh;                 
-  display: flex;                 
-  justify-content: center;       
-  align-items: center;           
-  overflow: hidden;              
+i {
+  color: #00c6ff;
 }
