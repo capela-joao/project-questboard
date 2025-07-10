@@ -1,28 +1,29 @@
-.dashboard_container{
-    width: 100%;
-    font-family: tahoma, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    padding: 20px;
-    height: 100%;
+.dashboard_container {
+  width: 100%;
+  font-family: tahoma, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  padding: 20px;
+  height: 100%;
 }
 
-.dashboard_feed_container{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    gap: 2rem;
+.dashboard_feed_container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 2rem;
 }
 
-.dashboard_feed_content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 60%;
+.dashboard_feed_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  gap: 0.5rem;
 }
 
-.dashboard_list_content{
-    width: 20%;
-    background-color: blueviolet;
+.dashboard_list_content {
+  width: 20%;
+  background-color: blueviolet;
 }

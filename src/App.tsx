@@ -4,22 +4,34 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Navigation from './components/Navigation/Navigation';
-import Profile from './pages/Profile';
+import Profile from './pages/Profile/Profile';
+import { AuthProvider } from './contexts/authContext';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />}/>
-        <Route path="/register" element={<Register />}/>
+      <AuthProvider>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        <Route path="/" element={<Navigation/>}>
-         <Route index element={<Dashboard/>}/>
-         <Route path="profile" element={<Profile/>}/>
-        </Route>
-      </Routes>
+          {/* Rotas protegidas */}
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Navigation />
+              </PrivateRoute>
+            }
+          >
+            <Route index element={<Dashboard />} />
+            <Route path="profile" element={<Profile />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
