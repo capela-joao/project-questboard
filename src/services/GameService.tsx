@@ -56,3 +56,21 @@ export const searchGames = async (query: string, token: string) => {
     return [];
   }
 };
+
+export const getTopGames = async (token: string) => {
+  const API_URL = 'https://questboard-games-api-dfh4c8emeqgwgjbd.eastasia-01.azurewebsites.net';
+
+  const response = await fetch(`${API_URL}/catalogo/rawg/getTopGames`, {
+    method: 'GET',
+    headers: {
+      Authorization: `${token}`,
+      'Content-Type': 'application/json',
+    },
+  });
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(error || 'Erro ao criar post.');
+  }
+
+  return response.json();
+};

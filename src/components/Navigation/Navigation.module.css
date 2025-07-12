@@ -1,7 +1,15 @@
-.container{
-    display: flex;
+.container {
+  display: flex;
+  flex-direction: column;
 }
 
-.content{
-    width: 100%;
+.content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 100px;
+}
+
+.vazio {
+  width: 500px;
 }

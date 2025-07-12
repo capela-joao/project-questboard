@@ -10,9 +10,9 @@
 .newpost_content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 100%;
+  max-width: 750px;
   padding: 1rem;
 }
 
@@ -96,7 +96,7 @@
 
 .dropdown_list {
   position: absolute;
-  top: 110%; /* ligeiramente abaixo do input */
+  top: 110%;
   left: 0;
   width: 100%;
   background: #1b1c20;
@@ -207,6 +207,10 @@
   height: 100px;
 }
 
+.modal_content textarea:focus {
+  border: 1px solid #00c6ff;
+}
+
 .modal_content button:hover {
   background-color: #3b3c41;
 }
@@ -228,4 +232,54 @@
 
 .star_empty {
   color: #777;
+}
+
+.modal_data {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.assets_button {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 24px;
+  width: 100%;
+  text-align: right;
+  padding: 0 1rem;
+}
+
+.assets_button input {
+  display: none;
+}
+
+.title_post {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+}
+
+.title_post input:focus {
+  border: 1px solid #00c6ff;
+}
+
+.title_post span {
+  text-align: left;
+}
+
+.title_post input {
+  width: 100%;
+  border-radius: 8px;
+  padding: 0.5rem;
+  border: none;
+  background-color: #5253552f;
+  border: 1px solid #cccccc2c;
+  font-size: 20px;
+  outline: none;
+  color: #fefefe;
+}
+
+.submit {
+  width: 100%;
 }

@@ -1,7 +1,10 @@
 .dashboard_container {
+  display: flex;
+  justify-content: center;
   width: 100%;
   font-family: tahoma, sans-serif;
   font-style: normal;
+  gap: 100px;
   font-weight: 400;
   padding: 20px;
   height: 100%;
@@ -9,17 +12,15 @@
 
 .dashboard_feed_container {
   display: flex;
-  justify-content: center;
-  width: 100%;
   gap: 2rem;
 }
 
 .dashboard_feed_content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 60%;
+  min-width: 750px;
+  max-width: 750px;
   gap: 0.5rem;
 }
 

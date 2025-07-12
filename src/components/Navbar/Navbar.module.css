@@ -21,6 +21,13 @@
   justify-content: space-between;
   align-items: center;
 }
+.header_title {
+  width: 10%;
+}
+
+.header_title h1 {
+  width: 100%;
+}
 
 .form_data {
   display: flex;
@@ -29,7 +36,7 @@
 
 .search_container {
   position: relative;
-  width: 400px;
+  width: 600px;
 }
 
 .search_container input {
@@ -57,6 +64,10 @@
 
 .search_container button:hover {
   color: #c7d5e0;
+}
+
+.user_profile {
+  width: 20%;
 }
 
 .user_profile a {

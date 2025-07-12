@@ -3,6 +3,8 @@ import { useAuthContext } from '../../contexts/authContext';
 import { searchGames } from '../../services/GameService';
 import { useEffect, useState, type FormEvent } from 'react';
 import { usePost } from '../../hooks/usePost';
+import { useUpload } from '../../hooks/useUpload';
+import type { PostData } from '../../types/types';
 
 type Game = {
   id: number;
@@ -15,26 +17,45 @@ type Game = {
   stores: { id: number; name: string }[];
 };
 
-const NewPost = () => {
+type NewPostProps = {
+  onPostCreated: () => void;
+};
+
+const NewPost = ({ onPostCreated }: NewPostProps) => {
   const { user, token } = useAuthContext();
-  const [search, setSearch] = useState('');
+  const { uploadImage } = useUpload();
   const { submitPost, loading, error, success } = usePost();
+
+  const [search, setSearch] = useState('');
   const [suggestions, setSuggestions] = useState<Game[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   const [showCreatePost, setShowCreatePost] = useState(false);
+
+  const [titlePost, setTitlePost] = useState('');
   const [userReview, setUserReview] = useState('');
   const [userRating, setUserRating] = useState(0);
+  const [imageUrl, setImageURL] = useState('');
 
   useEffect(() => {
-    const delayDebounce = setTimeout(() => {
-      if (search.length > 0) {
-        fetchSuggestions();
-      } else {
-        setSuggestions([]);
-        setShowDropdown(false);
-      }
-    }, 500);
+    const delayDebounce = setTimeout(
+      () => {
+        if (search.length > 0) {
+          fetchSuggestions();
+        } else {
+          setSuggestions([]);
+          setShowDropdown(false);
+        }
+
+        if (success) {
+          setTimeout(() => {
+            setShowCreatePost(false);
+          }, 0);
+        }
+      },
+      100,
+      [success],
+    );
 
     return () => clearTimeout(delayDebounce);
   }, [search]);
@@ -56,18 +77,41 @@ const NewPost = () => {
     setSearch(game.name);
   };
 
-  const handleCloseModal = () => {
-    setSelectedGame(null);
-  };
+  // const handleCloseModal = () => {
+  //   setSelectedGame(null);
+  // };
+
+  const authorId = user?.id;
+
+  if (!authorId) {
+    console.error('Usuário não encontrado');
+    return;
+  }
 
   const handleSubmitPost = async () => {
+    if (!token || !user) {
+      alert('Usuário não autenticado.');
+      return;
+    }
+
     if (!selectedGame || !userReview || userRating === 0) {
       alert('Preencha todos os campos!');
       return;
     }
+
+    const data: PostData = {
+      authorId: String(user.id),
+      gameId: selectedGame.id,
+      title: titlePost,
+      content: userReview,
+      imageURL: imageUrl,
+      rate: userRating,
+    };
+
     try {
-      // await submitPost()
+      await submitPost(data);
       console.log('Post realizado com sucesso!');
+      onPostCreated();
       setShowCreatePost(false);
       setUserReview('');
       setUserRating(0);
@@ -149,27 +193,64 @@ const NewPost = () => {
                 </p>
               </div>
             </div>
+            <div className={styles.modal_data}>
+              <label className={styles.title_post}>
+                <span>Título do post:</span>
+                <input
+                  type="text"
+                  value={titlePost}
+                  onChange={e => setTitlePost(e.target.value)}
+                  placeholder="Dê um título para o seu Post."
+                />
+              </label>
 
-            <textarea
-              placeholder="Compartilhe o que achou desse jogo..."
-              value={userReview}
-              onChange={e => setUserReview(e.target.value)}
-            />
+              <div className={styles.post_review}>
+                <textarea
+                  placeholder="Compartilhe o que achou desse jogo..."
+                  value={userReview}
+                  onChange={e => setUserReview(e.target.value)}
+                />
+                <label className={styles.assets_button}>
+                  <span>
+                    <i className="fa-regular fa-image"></i>
+                  </span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={async e => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        const imageUrl = await uploadImage(file);
+                        if (imageUrl) {
+                          setImageURL(imageUrl);
+                        } else {
+                          alert('Erro ao enviar imagem');
+                        }
+                      }
+                    }}
+                  />
+                </label>
+              </div>
 
-            <div className={styles.stars}>
-              <p>Dê a sua nota para este jogo:</p>
-              {[1, 2, 3, 4, 5].map(star => (
-                <span
-                  key={star}
-                  className={userRating >= star ? styles.star_filled : styles.star_empty}
-                  onClick={() => setUserRating(star)}
-                >
-                  ★
-                </span>
-              ))}
+              <div className={styles.stars}>
+                <p>Dê a sua nota para este jogo:</p>
+                {[1, 2, 3, 4, 5].map(star => (
+                  <span
+                    key={star}
+                    className={userRating >= star ? styles.star_filled : styles.star_empty}
+                    onClick={() => setUserRating(star)}
+                  >
+                    ★
+                  </span>
+                ))}
+              </div>
+
+              <div className={styles.submit}>
+                <button onClick={handleSubmitPost} disabled={loading}>
+                  {loading ? 'Publicando...' : 'Publicar'}
+                </button>
+              </div>
             </div>
-
-            <button onClick={handleSubmitPost}>Publicar</button>
           </div>
         </div>
       )}

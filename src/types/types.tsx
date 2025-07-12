@@ -7,3 +7,14 @@ export interface User {
   createdAt: number;
   updatedAt: number;
 }
+
+export interface PostData {
+  authorId: string;
+  gameId: number;
+  title: string;
+  content: string;
+  imageURL: string;
+  rate: number;
+}
+
+

@@ -1,6 +1,7 @@
 .menu_container {
+  position: fixed;
   height: 100vh;
-  width: 300px;
+  width: 500px;
   background: #101114;
   color: #fefefe;
   font-family: tahoma, sans-serif;
@@ -8,6 +9,7 @@
   font-weight: 400;
   padding: 1rem;
   border: 1px solid #cccccc2c;
+  border-top: none;
 }
 
 .menu_content {
