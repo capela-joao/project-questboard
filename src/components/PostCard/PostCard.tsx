@@ -340,7 +340,11 @@ const PostCard = ({
   }
 
   if (!posts.length) {
-    return <p>Nenhum post encontrado.</p>;
+    return (
+      <div className={styles.loading}>
+        <p>Nenhum post encontrado.</p>
+      </div>
+    );
   }
 
   return (

@@ -315,7 +315,9 @@ const Profile = () => {
             <p>Carregando posts...</p>
           </div>
         ) : userPosts.length === 0 ? (
-          <p>Nenhum post encontrado.</p>
+          <div className={styles.loading}>
+            <p>Nenhum post encontrado.</p>
+          </div>
         ) : (
           <ul className={styles.post_container}>
             {userPosts.map(post => {
