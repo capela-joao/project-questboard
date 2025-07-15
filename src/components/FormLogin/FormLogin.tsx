@@ -167,7 +167,6 @@ const FormLogin = () => {
               type="button"
               className={styles.btn_submit_google}
               onClick={handleGoogleButtonClick}
-              disabled={loading}
             >
               <div className={styles.div_submit_google}>
                 <img src={googleLogo} height={'20px'} width={'20px'} alt="logo-google" />
