@@ -415,8 +415,8 @@ const Profile = () => {
               return (
                 <li key={post.id} className={styles.post_content}>
                   <div className={styles.profile}>
-                    {user.avatarUrl ? (
-                      <img src={user.avatarUrl} alt={`Avatar de ${user.username}`} />
+                    {user && user.avatarUrl ? (
+                      <img src={user.avatarUrl} alt="profile" />
                     ) : (
                       <i className="fas fa-user"></i>
                     )}
