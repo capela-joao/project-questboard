@@ -19,8 +19,6 @@ export async function createPost(data: PostData, token: string) {
     },
     body: JSON.stringify(data),
   });
-  console.log(response);
-  console.log(data);
 
   if (!response.ok) {
     const error = await response.text();

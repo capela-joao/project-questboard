@@ -126,7 +126,6 @@ const NewPost = ({ onPostCreated }: NewPostProps) => {
 
     try {
       await submitPost(data);
-      console.log('Post realizado com sucesso!');
       onPostCreated();
       setShowCreatePost(false);
       setUserReview('');

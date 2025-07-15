@@ -42,14 +42,11 @@ export const searchGames = async (query: string, token: string) => {
       },
     });
 
-    console.log(response);
-
     if (!response.ok) {
       throw new Error(`Erro ao buscar jogos: ${response.status} - ${response.statusText}`);
     }
 
     const data = await response.json();
-    console.log('Resposta da API:', data);
     return data.results;
   } catch (err: any) {
     console.error('Erro na requisição:', err.message);

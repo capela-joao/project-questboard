@@ -61,13 +61,10 @@ export async function login(data: LoginData): Promise<AuthResponse> {
 
   if (!response.ok) {
     const error = await response.text();
-    console.log('Erro recebido da API:', error);
     throw new Error(error || 'Erro ao fazer login');
   }
 
   const json = await response.json();
-
-  console.log('resposta json: ', json);
 
   return json;
 }
