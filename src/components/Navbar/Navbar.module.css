@@ -9,7 +9,7 @@
   top: 0;
   left: 300px;
   right: 0;
-  background: #101114;
+  background: linear-gradient(135deg, #101114, #1b1e21);
   color: #c7d5e0;
   font-family: tahoma, sans-serif;
   font-style: normal;

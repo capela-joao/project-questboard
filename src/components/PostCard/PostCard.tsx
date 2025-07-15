@@ -371,10 +371,12 @@ const PostCard = ({
               )}
             </div>
             <div className={styles.post_data}>
-              <p>
-                <strong>{userProfile?.username || 'Usuário desconhecido'}</strong> •{' '}
-                {formatRelativeTime(post.createdAt)}
-              </p>
+              <div className={styles.username_date}>
+                <p>
+                  <strong>{userProfile?.username || 'Usuário desconhecido'}</strong>
+                  <span>• {formatRelativeTime(post.createdAt)}</span>
+                </p>
+              </div>
               <h3>{post.title}</h3>
               <p>{post.content}</p>
               <p>Nota: {post.rate}</p>

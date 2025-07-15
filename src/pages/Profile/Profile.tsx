@@ -341,9 +341,12 @@ const Profile = () => {
                     )}
                   </div>
                   <div className={styles.post_data}>
-                    <p>
-                      <strong>{user.username}</strong> • {formatRelativeTime(post.createdAt)}
-                    </p>
+                    <div className={styles.username_date}>
+                      <p>
+                        <strong>{user.username || 'Usuário desconhecido'}</strong>
+                        <span>• {formatRelativeTime(post.createdAt)}</span>
+                      </p>
+                    </div>
                     <h4>{post.title}</h4>
                     <p>{post.content}</p>
                     <p>Nota: {post.rate}</p>

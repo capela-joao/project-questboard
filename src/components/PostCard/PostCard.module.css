@@ -37,6 +37,16 @@
   gap: 1rem;
 }
 
+.username_date p {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.username_date span {
+  font-size: 14px;
+  color: #8d8d8d;
+}
+
 .post_header {
   display: flex;
   align-items: center;

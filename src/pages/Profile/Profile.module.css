@@ -116,6 +116,16 @@
   margin-top: 10px;
 }
 
+.username_date p {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.username_date span {
+  font-size: 14px;
+  color: #8d8d8d;
+}
+
 .profile_data h2 {
   font-size: 20px;
   font-weight: bold;

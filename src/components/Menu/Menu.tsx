@@ -59,16 +59,8 @@ const Menu = () => {
         <div className={styles.menu_header}>
           <div className={styles.menu_title}>
             <h1 className={styles.menu_logo}>QuestBoard</h1>
-            <button
-              className={styles.menu_add_button}
-              aria-label="Adicionar novo post"
-              title="Adicionar novo post"
-            >
-              <i className="fa-solid fa-plus"></i>
-            </button>
           </div>
         </div>
-
         <div className={styles.menu_main}>
           <ul className={styles.menu_list} role="list">
             {menuItems.map(item => (
