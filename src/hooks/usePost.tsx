@@ -5,9 +5,11 @@ import {
   sendLike,
   deleteLike,
   createComment,
+  deletePost,
+  editPost,
 } from '../services/PostService';
 import { useAuthContext } from '../contexts/authContext';
-import { type CommentData, type LikeData, type PostData } from '../types/types';
+import { type CommentData, type LikeData, type PostData, type EditPostData } from '../types/types';
 
 export function usePost() {
   const [loading, setLoading] = useState(false);
@@ -23,6 +25,42 @@ export function usePost() {
     try {
       if (!token) throw new Error('Token de autenticação ausente.');
       await createPost(data, token);
+      setSuccess(true);
+    } catch (err: any) {
+      console.error('Erro ao criar post:', err.message);
+      setError(err.message || 'Erro desconhecido');
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const removePost = async (postId: string) => {
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    try {
+      if (!token) throw new Error('Token de autenticação ausente.');
+      await deletePost(postId, token);
+      setSuccess(true);
+    } catch (err: any) {
+      console.error('Erro ao criar post:', err.message);
+      setError(err.message || 'Erro desconhecido');
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const changePost = async (data: EditPostData, postId: string, token: string) => {
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    try {
+      if (!token) throw new Error('Token de autenticação ausente.');
+      await editPost(data, postId, token);
       setSuccess(true);
     } catch (err: any) {
       console.error('Erro ao criar post:', err.message);
@@ -102,5 +140,16 @@ export function usePost() {
     }
   };
 
-  return { submitPost, getPost, submitLike, removeLike, submitComment, loading, error, success };
+  return {
+    submitPost,
+    getPost,
+    submitLike,
+    removeLike,
+    submitComment,
+    removePost,
+    changePost,
+    loading,
+    error,
+    success,
+  };
 }

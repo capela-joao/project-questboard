@@ -17,6 +17,13 @@ export interface PostData {
   rate: number;
 }
 
+export interface EditPostData {
+  title: string;
+  content: string;
+  imageURL: string;
+  rate: number;
+}
+
 export interface LikeData {
   userId: string;
   postId: string;

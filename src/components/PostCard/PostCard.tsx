@@ -6,6 +6,7 @@ import { formatRelativeTime } from '../../utils/formatRelativeTime';
 import { type LikeData, type CommentData } from '../../types/types';
 import { useAuthContext } from '../../contexts/authContext';
 import { useNotifications } from '../../hooks/useNotification';
+import { rateMap } from '../../utils/enums';
 
 type PostCardProps = {
   posts: any[] | undefined;
@@ -379,7 +380,10 @@ const PostCard = ({
               </div>
               <h3>{post.title}</h3>
               <p>{post.content}</p>
-              <p>Nota: {post.rate}</p>
+              <p>
+                Nota: {typeof post.rate === 'string' ? (rateMap[post.rate] ?? 'N/A') : post.rate} /
+                5
+              </p>
               {post.imageURL && (
                 <div className={styles.post_image}>
                   <img src={post.imageURL} alt="Imagem do post" />

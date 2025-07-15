@@ -1,4 +1,4 @@
-import type { CommentData, LikeData, PostData } from '../types/types';
+import type { CommentData, EditPostData, LikeData, PostData } from '../types/types';
 
 const API_URL = 'https://questboard-review-api.azurewebsites.net';
 
@@ -13,6 +13,41 @@ const safeJsonParse = async (response: Response) => {
 export async function createPost(data: PostData, token: string) {
   const response = await fetch(`${API_URL}/posts`, {
     method: 'POST',
+    headers: {
+      Authorization: `${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(error || 'Erro ao criar post.');
+  }
+
+  return await safeJsonParse(response);
+}
+
+export async function deletePost(postId: string, token: string) {
+  const response = await fetch(`${API_URL}/posts/${postId}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `${token}`,
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(error || 'Erro ao criar post.');
+  }
+
+  return await safeJsonParse(response);
+}
+
+export async function editPost(data: EditPostData, postId: string, token: string) {
+  const response = await fetch(`${API_URL}/posts/${postId}`, {
+    method: 'PUT',
     headers: {
       Authorization: `${token}`,
       'Content-Type': 'application/json',
