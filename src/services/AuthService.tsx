@@ -45,6 +45,8 @@ export async function register(data: RegisterData): Promise<User> {
     body: JSON.stringify(data),
   });
 
+  console.log(response);
+
   if (!response.ok) {
     const error = await response.text();
     throw new Error(error || 'Erro ao registrar');
