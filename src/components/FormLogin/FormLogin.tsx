@@ -68,7 +68,7 @@ const FormLogin = () => {
           callback: handleGoogleCredentialResponse,
           auto_select: false,
           cancel_on_tap_outside: true,
-          use_fedcm_for_prompt: false,
+          use_fedcm_for_prompt: true,
         });
 
         window.google.accounts.id.renderButton(document.getElementById('google-signin-button'), {
