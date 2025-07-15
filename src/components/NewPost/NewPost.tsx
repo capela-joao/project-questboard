@@ -40,24 +40,20 @@ const NewPost = ({ onPostCreated }: NewPostProps) => {
   const [imageUploading, setImageUploading] = useState(false);
 
   useEffect(() => {
-    const delayDebounce = setTimeout(
-      () => {
-        if (search.length > 0) {
-          fetchSuggestions();
-        } else {
-          setSuggestions([]);
-          setShowDropdown(false);
-        }
+    const delayDebounce = setTimeout(() => {
+      if (search.length > 2) {
+        fetchSuggestions();
+      } else {
+        setSuggestions([]);
+        setShowDropdown(false);
+      }
+    }, 500);
 
-        if (success) {
-          setTimeout(() => {
-            setShowCreatePost(false);
-          }, 0);
-        }
-      },
-      100,
-      [success],
-    );
+    if (success) {
+      setTimeout(() => {
+        setShowCreatePost(false);
+      }, 0);
+    }
 
     return () => clearTimeout(delayDebounce);
   }, [search]);
