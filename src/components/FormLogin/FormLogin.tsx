@@ -3,6 +3,7 @@ import { useAuth } from '../../hooks/useAuth';
 import styles from './FormLogin.module.css';
 import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { useFormValidation } from '../../hooks/useFormValidation';
+import googleLogo from '../../assets/images/logo-google.png';
 
 const FormLogin = () => {
   const { login, error, loading } = useAuth();
@@ -71,12 +72,7 @@ const FormLogin = () => {
             </button>
             <button className={styles.btn_submit_google}>
               <div className={styles.div_submit_google}>
-                <img
-                  src="src\assets\images\logo-google.png"
-                  height={'20px'}
-                  width={'20px'}
-                  alt="logo-google"
-                />
+                <img src={googleLogo} height={'20px'} width={'20px'} alt="logo-google" />
                 <span>Continuar com o Google</span>
               </div>
             </button>
