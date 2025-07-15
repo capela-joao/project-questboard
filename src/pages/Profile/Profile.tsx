@@ -57,6 +57,8 @@ const Profile = () => {
   const [editContent, setEditContent] = useState('');
   const [editImageURL, setEditImageURL] = useState('');
   const [editRating, setEditRating] = useState(0);
+  const [imageAttempted, setImageAttempted] = useState(false);
+  const [imageUploading, setImageUploading] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -176,6 +178,20 @@ const Profile = () => {
   const handleSaveEdit = async () => {
     if (!editingPost || !token) return;
 
+    if (imageAttempted && !editImageURL) {
+      const confirmSubmit = window.confirm(
+        'Você tentou adicionar uma imagem, mas ela não foi carregada. Deseja continuar sem a imagem?',
+      );
+      if (!confirmSubmit) {
+        return;
+      }
+    }
+
+    if (imageUploading) {
+      alert('Aguarde o upload da imagem terminar antes de publicar.');
+      return;
+    }
+
     try {
       const editData = {
         title: editTitle,
@@ -189,7 +205,8 @@ const Profile = () => {
       setUserPosts(prev =>
         prev.map(post => (post.id === editingPost.id ? { ...post, ...editData } : post)),
       );
-
+      setImageAttempted(false);
+      setImageUploading(false);
       closeEditModal();
       alert('Post atualizado com sucesso!');
     } catch (error) {
@@ -359,7 +376,11 @@ const Profile = () => {
           <div className={styles.banner}></div>
 
           <div className={styles.avatar_container}>
-            <img src={user.avatarUrl} alt="Avatar" className={styles.avatar} />
+            {user && user.avatarUrl ? (
+              <img src={user.avatarUrl} alt="profile" className={styles.avatar} />
+            ) : (
+              <i className="fas fa-user"></i>
+            )}
           </div>
 
           <button onClick={() => setIsEditing(true)} className={styles.btn_edit}>

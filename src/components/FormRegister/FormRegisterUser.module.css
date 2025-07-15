@@ -97,6 +97,19 @@ form {
   animation-delay: 0.3s;
 }
 
+.form_footer {
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.form_footer a {
+  color: #c7d5e0;
+}
+
 .form_error p {
   color: red;
   padding: 1rem 0;

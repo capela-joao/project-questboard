@@ -1,5 +1,5 @@
 import styles from './FormRegisterUser.module.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useState, type FormEvent } from 'react';
 import { useFormValidation } from '../../hooks/useFormValidation';
@@ -96,17 +96,12 @@ const FormRegisterUser = () => {
             </button>
           </div>
         </form>
-        {/* <div className={styles.form_footer}>
-                    <span>
-                        <p>
-                            <a href="#">Não consigo iniciar a sessão.</a>
-                        </p>
-                    </span>
-                    <span>
-                        <p>Não possui uma conta?</p>
-                        <a href="#">Crie uma gratuitamente!</a>
-                    </span>
-                </div> */}
+        <div className={styles.form_footer}>
+          <span>
+            <p>Já possui uma conta?</p>
+            <Link to="/login">Faça o login imediatamente!</Link>
+          </span>
+        </div>
       </div>
     </div>
   );

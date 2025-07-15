@@ -62,6 +62,8 @@
   overflow: hidden;
   z-index: 2;
   transition: transform 0.3s ease;
+  background-color: #f0f0f0;
+  border: 3px solid #cccccc2c;
 }
 
 .avatar_container:hover {
@@ -74,12 +76,27 @@
   object-fit: cover;
   display: block;
   border-radius: 50%;
-  border: 3px solid #cccccc2c;
+  border: none;
   transition: border-color 0.3s ease;
 }
 
-.avatar:hover {
+.avatar_container:hover {
   border-color: #00c6ff;
+}
+
+.avatar_container i {
+  font-size: 48px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1; /* remove espaçamento extra */
+  margin-top: 15px;
+  padding: 0; /* remove qualquer padding */
+}
+
+.avatar_container:hover i {
+  color: #00c6ff;
 }
 
 .btn_edit {
