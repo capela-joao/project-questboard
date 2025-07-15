@@ -11,6 +11,7 @@ const FormLogin = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [provider, setProvider] = useState('');
   const [formError, setFormError] = useState<string | null>('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -23,7 +24,8 @@ const FormLogin = () => {
       return;
     }
     try {
-      await login({ email, password });
+      setProvider('');
+      await login({ email, password, provider });
       console.log('Login realizado com sucesso.');
       navigate('/');
     } catch (err: any) {

@@ -43,7 +43,7 @@ const RankingGames = () => {
   return (
     <div className={styles.container}>
       <h2>Top Games</h2>
-      {loading && <p>Carregando jogos...</p>}
+      <div className={styles.loading}>{loading && <p>Carregando jogos...</p>}</div>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <ul className={styles.rank_list}>
         {topGames.map(game => (

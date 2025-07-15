@@ -1,15 +1,16 @@
 .container {
   display: flex;
-  flex-direction: column;
+  min-height: 100vh;
 }
 
 .content {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  gap: 100px;
+  margin-left: 300px;
+  padding-top: 90px;
+  flex: 1;
+  background-color: #1a1a1a;
 }
 
-.vazio {
-  width: 500px;
+.contentInner {
+  padding: 20px;
+  min-height: calc(100vh - 90px);
 }

@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Navigation from './components/Navigation/Navigation';
+import NotificationPage from './pages/Notification/Notification';
 import Profile from './pages/Profile/Profile';
 import { AuthProvider } from './contexts/authContext';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
@@ -27,6 +28,7 @@ function App() {
           >
             <Route index element={<Dashboard />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="notification" element={<NotificationPage />} />
           </Route>
         </Routes>
       </AuthProvider>

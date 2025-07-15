@@ -1,0 +1,239 @@
+.notificationPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  font-family: tahoma, sans-serif;
+  padding: 1rem 0;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.notificationPage h1 {
+  color: #fefefe;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.notificationsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.notificationItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #1b1e21, #101114);
+  border: 1px solid #cccccc2c;
+  border-radius: 8px;
+  color: #fefefe;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.notificationItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-color: #00c6ff;
+}
+
+.notificationItem.unread {
+  border-left: 4px solid #00c6ff;
+  background: linear-gradient(135deg, #1f2226, #141619);
+}
+
+.notificationIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+  border: 1px solid #cccccc2c;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.notificationIcon:hover {
+  background: linear-gradient(135deg, #3a3a3a, #2c2c2c);
+  transform: scale(1.05);
+}
+
+.notificationIcon i {
+  font-size: 18px;
+  transition: transform 0.2s ease;
+}
+
+.notificationContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.notificationText {
+  font-size: 15px;
+  font-weight: 500;
+  color: #fefefe;
+  margin: 0;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.notificationItem:hover .notificationText {
+  color: #00c6ff;
+}
+
+.notificationDate {
+  font-size: 13px;
+  color: #8d8d8d;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.notificationItem:hover .notificationDate {
+  color: #c7d5e0;
+}
+
+.unreadIndicator {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: #00c6ff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 198, 255, 0.6);
+  animation: pulse 2s infinite;
+}
+
+.noNotifications {
+  text-align: center;
+  color: #8d8d8d;
+  font-size: 16px;
+  font-style: italic;
+  padding: 2rem;
+  margin: 0;
+  background: linear-gradient(135deg, #1b1e21, #101114);
+  border: 1px solid #cccccc2c;
+  border-radius: 8px;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  height: 200px;
+  color: #fefefe;
+  font-size: 18px;
+  background: linear-gradient(135deg, #1b1e21, #101114);
+  border: 1px solid #cccccc2c;
+  font-family: tahoma, sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.loading p {
+  text-align: center;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .notificationPage {
+    padding: 0.5rem;
+  }
+
+  .notificationPage h1 {
+    font-size: 20px;
+    margin-bottom: 1rem;
+  }
+
+  .notificationItem {
+    padding: 0.8rem 1rem;
+    margin: 0 0.5rem;
+  }
+
+  .notificationIcon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .notificationIcon i {
+    font-size: 16px;
+  }
+
+  .notificationText {
+    font-size: 14px;
+  }
+
+  .notificationDate {
+    font-size: 12px;
+  }
+
+  .unreadIndicator {
+    width: 6px;
+    height: 6px;
+    right: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .notificationPage {
+    padding: 0.3rem;
+  }
+
+  .notificationItem {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    margin: 0;
+    padding: 0.8rem;
+  }
+
+  .notificationItem.unread {
+    border-left: 4px solid #00c6ff;
+  }
+
+  .notificationsList {
+    gap: 0.3rem;
+  }
+
+  .noNotifications {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    margin: 0;
+  }
+}

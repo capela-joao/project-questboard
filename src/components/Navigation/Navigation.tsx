@@ -11,8 +11,7 @@ const Navigation = () => {
       <Menu />
       <Navbar />
       <div className={styles.content}>
-        <div className={styles.vazio}></div>
-        <div>
+        <div className={styles.contentInner}>
           <Outlet />
         </div>
       </div>

@@ -1,11 +1,12 @@
-*{
+* {
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body{
-  background: linear-gradient(135deg, #1b1e21, #101114);
+html,
+body {
+  background: #101114;
 }
 
 i {

@@ -9,9 +9,9 @@ const Navbar = () => {
     <>
       <header className={styles.header_container}>
         <div className={styles.header_content}>
-          <div className={styles.header_title}>
+          {/* <div className={styles.header_title}>
             <h1>QuestBoard</h1>
-          </div>
+          </div> */}
           <form className={styles.form_data}>
             <div className={styles.search_container}>
               <input type="text" placeholder="Buscar jogos o posts..." />

@@ -1,7 +1,13 @@
 import { useState } from 'react';
-import { createPost, getPostsByUser } from '../services/PostService';
+import {
+  createPost,
+  getPostsByUser,
+  sendLike,
+  deleteLike,
+  createComment,
+} from '../services/PostService';
 import { useAuthContext } from '../contexts/authContext';
-import { type PostData } from '../types/types';
+import { type CommentData, type LikeData, type PostData } from '../types/types';
 
 export function usePost() {
   const [loading, setLoading] = useState(false);
@@ -42,5 +48,59 @@ export function usePost() {
     }
   };
 
-  return { submitPost, getPost, loading, error, success };
+  const submitLike = async (data: LikeData) => {
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    try {
+      if (!token) throw new Error('Token de autenticação ausente.');
+      await sendLike(data, token);
+      setSuccess(true);
+    } catch (err: any) {
+      console.error('Erro ao criar post:', err.message);
+      setError(err.message || 'Erro desconhecido');
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const removeLike = async (data: LikeData) => {
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    try {
+      if (!token) throw new Error('Token de autenticação ausente.');
+      await deleteLike(data, token);
+      setSuccess(true);
+    } catch (err: any) {
+      console.error('Erro ao criar post:', err.message);
+      setError(err.message || 'Erro desconhecido');
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const submitComment = async (data: CommentData) => {
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    try {
+      if (!token) throw new Error('Token de autenticação ausente.');
+      await createComment(data, token);
+      setSuccess(true);
+    } catch (err: any) {
+      console.error('Erro ao criar post:', err.message);
+      setError(err.message || 'Erro desconhecido');
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { submitPost, getPost, submitLike, removeLike, submitComment, loading, error, success };
 }

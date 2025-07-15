@@ -1,7 +1,7 @@
 import styles from './NewPost.module.css';
 import { useAuthContext } from '../../contexts/authContext';
 import { searchGames } from '../../services/GameService';
-import { useEffect, useState, type FormEvent } from 'react';
+import { useEffect, useState } from 'react';
 import { usePost } from '../../hooks/usePost';
 import { useUpload } from '../../hooks/useUpload';
 import type { PostData } from '../../types/types';
@@ -24,7 +24,7 @@ type NewPostProps = {
 const NewPost = ({ onPostCreated }: NewPostProps) => {
   const { user, token } = useAuthContext();
   const { uploadImage } = useUpload();
-  const { submitPost, loading, error, success } = usePost();
+  const { submitPost, loading, success } = usePost();
 
   const [search, setSearch] = useState('');
   const [suggestions, setSuggestions] = useState<Game[]>([]);
@@ -36,6 +36,8 @@ const NewPost = ({ onPostCreated }: NewPostProps) => {
   const [userReview, setUserReview] = useState('');
   const [userRating, setUserRating] = useState(0);
   const [imageUrl, setImageURL] = useState('');
+  const [imageAttempted, setImageAttempted] = useState(false);
+  const [imageUploading, setImageUploading] = useState(false);
 
   useEffect(() => {
     const delayDebounce = setTimeout(
@@ -99,6 +101,20 @@ const NewPost = ({ onPostCreated }: NewPostProps) => {
       return;
     }
 
+    if (imageAttempted && !imageUrl) {
+      const confirmSubmit = window.confirm(
+        'Você tentou adicionar uma imagem, mas ela não foi carregada. Deseja continuar sem a imagem?',
+      );
+      if (!confirmSubmit) {
+        return;
+      }
+    }
+
+    if (imageUploading) {
+      alert('Aguarde o upload da imagem terminar antes de publicar.');
+      return;
+    }
+
     const data: PostData = {
       authorId: String(user.id),
       gameId: selectedGame.id,
@@ -117,6 +133,8 @@ const NewPost = ({ onPostCreated }: NewPostProps) => {
       setUserRating(0);
       setSelectedGame(null);
       setSearch('');
+      setImageAttempted(false);
+      setImageUploading(false);
     } catch (err: any) {
       console.log(err.message || 'Erro inesperado ao tentar criar post.');
     }

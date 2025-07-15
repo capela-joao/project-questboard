@@ -17,4 +17,31 @@ export interface PostData {
   rate: number;
 }
 
+export interface LikeData {
+  userId: string;
+  postId: string;
+}
 
+export interface CommentData {
+  userId: string;
+  postId: string;
+  content: string;
+}
+
+export interface Comment {
+  id: string;
+  userId: string;
+  postId: string;
+  content: string;
+  createdAt: string;
+}
+
+export interface Notification {
+  id: string;
+  receiverId: string;
+  senderId: string;
+  type: 'Like';
+  redirect: string;
+  createdAt: string;
+  read: boolean;
+}
