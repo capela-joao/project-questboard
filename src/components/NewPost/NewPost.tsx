@@ -140,7 +140,11 @@ const NewPost = ({ onPostCreated }: NewPostProps) => {
         <div className={styles.newpost_content}>
           <div className={styles.newpost_data}>
             <div className={styles.profile}>
-              {user ? <img src={user.avatarUrl} alt="profile" /> : <i className="fas fa-user"></i>}
+              {user && user.avatarUrl ? (
+                <img src={user.avatarUrl} alt="profile" />
+              ) : (
+                <i className="fas fa-user"></i>
+              )}
             </div>
             <form onSubmit={e => e.preventDefault()}>
               <input

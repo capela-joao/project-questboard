@@ -23,7 +23,7 @@ const Navbar = () => {
           <div className={styles.user_section}>
             <div className={styles.user_profile}>
               <Link to={'/profile'}>
-                {user ? (
+                {user && user.avatarUrl ? (
                   <img src={user.avatarUrl} alt="profile" />
                 ) : (
                   <i className="fas fa-user"></i>
