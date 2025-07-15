@@ -38,7 +38,6 @@ const FormRegisterUser = () => {
         <div className={styles.form_title}>
           <h2>Faça seu cadastro</h2>
         </div>
-        {/* Mostrar erros de validação/autenticação */}
         {(formError || error) && (
           <div className={styles.form_error}>
             <p>{formError || error}</p>
