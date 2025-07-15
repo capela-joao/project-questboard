@@ -11,6 +11,7 @@ export interface LoginData {
   email: string;
   password: string;
   provider: string;
+  googleCredential: string;
 }
 
 export interface AuthResponse {

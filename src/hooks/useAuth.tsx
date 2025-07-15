@@ -15,7 +15,12 @@ export const useAuth = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const login = async (data: { email: string; password: string; provider: string }) => {
+  const login = async (data: {
+    email: string;
+    password: string;
+    provider: string;
+    googleCredential: string;
+  }) => {
     setError(null);
     setLoading(true);
     try {
